@@ -4,7 +4,7 @@ import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
-import {Link} from 'react-router-dom'
+
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -35,8 +35,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchBox({handleSearch, value}) {
-  const [querySearch, setQuerySearch] = useState(value || '');   
+export default function SearchBox({handleSearch, search}) {
+  const [querySearch, setQuerySearch] = useState(search || '');   
   const classes = useStyles();
   return (
     <Grid container>
@@ -55,7 +55,6 @@ export default function SearchBox({handleSearch, value}) {
         </div>
       </Grid>
       <Grid item xs={2}>
-
         <IconButton
           disableFocusRipple
           disableRipple
@@ -65,9 +64,7 @@ export default function SearchBox({handleSearch, value}) {
           onClick={() => handleSearch(querySearch)}
         >
           <SearchIcon fontSize="small" />
-
         </IconButton>
-
       </Grid>
     </Grid>
   );

@@ -1,6 +1,4 @@
 import React, { useState,useEffect } from "react";
-import Header from "../components/Header";
-import SearchBox from "../components/SearchBox";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
@@ -8,24 +6,11 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import services from "../api/services";
+import Home from './Home'
 
-const useStyles = makeStyles((theme) => ({
-  contentCategoy: {
-    "& h1 span": {
-      "&::after": {
-        content: '"❯"',
-        height: 60,
-        padding: theme.spacing(1),
-      },
-    },
-    "& h1 span:last-child": {
-      "&::after": {
-        display: "none",
-      },
-    },
-  },
+const useStyles = makeStyles(() => ({
   picContent: {
     textAlign: "center",
   },
@@ -47,24 +32,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Item = (props) => {
-//   const {
-//     id,
-//     title,
-//     price,
-//     picture,
-//     condition,
-//     free_shipping,
-//     sold_quantity,
-//     description,
-//   } = item;
   const classes = useStyles();
-  const history = useHistory();
   const [item, setItem] = useState(null)
   const id = useParams().id
   let categories
   if (props.location.state && props.location.state.categories) {
      categories = props.location.state.categories
 }
+const decimales = item &&  item.price.decimals != 0 ? item.price.decimals : "00"
 
 
 
@@ -83,39 +58,9 @@ const Item = (props) => {
     };
 
 
-
-
-
-const handleSearch = (search) => {
-    history.push(`/items?search=${search}`,{search});
-};
-
-  console.log(categories)
   return (
-    <>
-      <Header>
-        <SearchBox handleSearch={handleSearch} /> {/*  // value={search} */}
-      </Header>
+    <Home categories={categories}>
       <Container>
-      <Box component="div" className={classes.contentCategoy} mt={2} mb={2}>
-          <Typography
-            variant="body2"
-            className={classes.category}
-            component={"h1"}
-          >
-            {categories ?
-              categories.map((category) => (
-                <Typography
-                  key={category}
-                  variant="body2"
-                  className={classes.category}
-                  component={"span"}
-                >
-                  {category}
-                </Typography>
-              )) : null}
-          </Typography>
-        </Box>
         <Paper elevation={0}>
           <Box
             component="div"
@@ -130,7 +75,7 @@ const handleSearch = (search) => {
               </Grid>
               <Grid item xs={3}>
                 <Typography variant="subtitle2" gutterBottom>
-                  {item && item.condition} - {item && item.sold_quantity} vendidos
+                  {item && item.condition != 'new' ? 'Usado' : 'Nuevo' } - {item && item.sold_quantity} vendidos
                 </Typography>
                 <Typography
                   variant="h5"
@@ -148,7 +93,7 @@ const handleSearch = (search) => {
                     gutterBottom
                   >
                     $ {item && item.price.amount}{" "}
-                    <Box component="span">{item && item.price.decimals}</Box>
+                    <Box component="span">{decimales}</Box>
                   </Typography>
                 </Box>
                 <Button variant="contained" fullWidth color="primary">
@@ -176,7 +121,7 @@ const handleSearch = (search) => {
           </Box>
         </Paper>
       </Container>
-    </>
+    </Home>
   );
 };
 
