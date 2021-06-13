@@ -1,7 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Home, Items, Item } from "./containers";
 import { BrowserRouter, Route } from "react-router-dom";
-
+import config from './api/config'
+config.firm()
 
 
 function App() {

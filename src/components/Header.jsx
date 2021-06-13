@@ -1,11 +1,10 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   logo: {
@@ -25,12 +24,12 @@ export default function Header({ children }) {
       <Toolbar>
         <Container justify="space-between">
           <Grid container spacing={0}>
-            <Grid item xs={1} className={classes.logo} >
-            <NavLink to="/">          
-                  <img src={iconPath} />
-            </NavLink>
+            <Grid item xs={2} className={classes.logo} >
+            <Link to="/">          
+                  <img src={iconPath} alt="mercado-libre"/>
+            </Link>
             </Grid>
-            <Grid item xs={11}>
+            <Grid item xs={10}>
               {children}
             </Grid>
           </Grid>

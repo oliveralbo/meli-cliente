@@ -39,9 +39,7 @@ const Item = (props) => {
   if (props.location.state && props.location.state.categories) {
      categories = props.location.state.categories
 }
-const decimales = item &&  item.price.decimals != 0 ? item.price.decimals : "00"
-
-
+const decimales = item &&  item.price.decimals !== 0 ? item.price.decimals : "00"
 
   useEffect(() => {
       getItem();
@@ -50,8 +48,7 @@ const decimales = item &&  item.price.decimals != 0 ? item.price.decimals : "00"
     const getItem = async () => {
         try {
             const data =  await services.getItem(id)
-            setItem(data && data.data.item)
-      
+            setItem(data && data.data.item)     
         } catch (e) {
             console.log(e);
         }
@@ -61,7 +58,7 @@ const decimales = item &&  item.price.decimals != 0 ? item.price.decimals : "00"
   return (
     <Home categories={categories}>
       <Container>
-        <Paper elevation={0}>
+        <Paper elevation={0}  style={{marginBottom:"3%"}}>
           <Box
             component="div"
             p={4}
@@ -70,10 +67,10 @@ const decimales = item &&  item.price.decimals != 0 ? item.price.decimals : "00"
             borderBottom={0}
           >
             <Grid container spacing={4}>
-              <Grid item xs={9} className={classes.picContent}>
-                <img className={classes.pic} src={item && item.picture} />
+              <Grid item md={9} sm={12} className={classes.picContent}>
+                <img className={classes.pic} src={item && item.picture} style={{maxWidth:"100%"}}/>
               </Grid>
-              <Grid item xs={3}>
+              <Grid item md={3} sm={12}>
                 <Typography variant="subtitle2" gutterBottom>
                   {item && item.condition != 'new' ? 'Usado' : 'Nuevo' } - {item && item.sold_quantity} vendidos
                 </Typography>
@@ -100,7 +97,7 @@ const decimales = item &&  item.price.decimals != 0 ? item.price.decimals : "00"
                   Comprar
                 </Button>
               </Grid>
-              <Grid item xs={12} className={classes.description}>
+              <Grid item md={8} sm={10} className={classes.description}>
                 <Typography
                   variant="h5"
                   gutterBottom
@@ -110,12 +107,9 @@ const decimales = item &&  item.price.decimals != 0 ? item.price.decimals : "00"
                 >
                   Descripción del producto
                 </Typography>
-
-                <Box component="div" pr={10}>
                   <Typography variant="body1" gutterBottom component={"p"}>
                     {item && item.description}
                   </Typography>
-                </Box>
               </Grid>
             </Grid>
           </Box>

@@ -3,22 +3,23 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
-import { Link,useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 
 const useStyles = makeStyles((theme) => ({
   pic: {
     width: "100%",
-    height: "100%",
+    maxHeight:"100%",
+    cursor:'pointer'
   },
   link: {
     fontWeight: "normal",
     textDecoration: "none",
-    // color: theme.palette.text.primary,
   },
   title: {
     fontWeight: 400,
+    cursor:'pointer'
   },
   location: {
     fontWeight: 400,
@@ -55,21 +56,16 @@ export default function Product({product, categories}) {
       borderRight={0}
     >
       <Grid container spacing={4}>
-        <Grid item xs={2} onClick={handleItem}>
-          {/* <NavLink href={`/items/${id}`} naked className={classes.link} categories={categories={categories}>}> */}
-           {/* <Link to={`/items/${id}`}  className={classes.link}> */}
+        <Grid item md={2} sm={2} xs={4}onClick={handleItem}>
             <img className={classes.pic} src={picture} />
-            {/* </Link> */}
-
         </Grid>
-        <Grid item xs={10}>
+        <Grid item md={10} sm={8} xs={8}>
           <Grid container spacing={0}>
             <Grid item xs={10}>
               <Typography variant="h5" gutterBottom component={"span"}>
                 {price.currency == "ARS" && "$"} {price.amount}{" "}
                 {free_shipping && <img src={iconPath} />}
               </Typography>
-              {/* <Link to={`/items/${id}`}  className={classes.link}> */}
                 <Typography
                   variant="h6"
                   gutterBottom
@@ -79,7 +75,6 @@ export default function Product({product, categories}) {
                 >
                   {title}
                 </Typography>
-              {/* </Link> */}
             </Grid>
             <Grid item xs={2}>
               <Typography variant="subtitle2" className={classes.location} gutterBottom>

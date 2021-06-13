@@ -38,7 +38,7 @@ const Items = (  props ) => {
     <Home categories={categories} search={search}>
       <Container>
         <Box component="div" borderColor="grey.100" border={1} borderBottom={0}>
-          <Paper elevation={0}>
+          <Paper elevation={0} style={{marginBottom:"3%"}}>
             {publications ?
               publications.map((product, i) => (
                 <Product key={i} product={product} categories={categories} />
