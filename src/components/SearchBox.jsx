@@ -50,7 +50,7 @@ export default function SearchBox({handleSearch, search}) {
               input: classes.inputInput,
             }}
             onChange={(e) => setQuerySearch(e.target.value)}
-            inputProps={{ "aria-label": "search" }}
+            inputProps={{ "aria-label": "input-search" }}
           />
         </div>
       </Grid>
@@ -62,6 +62,7 @@ export default function SearchBox({handleSearch, search}) {
           aria-label="delete"
           className={classes.searchIcon}
           onClick={() => handleSearch(querySearch)}
+          aria-label="button-search"
         >
           <SearchIcon fontSize="small" />
         </IconButton>
